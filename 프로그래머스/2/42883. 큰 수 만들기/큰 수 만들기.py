@@ -1,11 +1,14 @@
 def solution(number, k):
+    
+    answer = ''
     stack = []
-    for num in number:
-        while k > 0 and stack and stack[-1] < num:
+    for i in number:
+        while stack and stack[-1] < i and k >0:
             stack.pop()
-            k -= 1
-        stack.append(num)
-    # 만약 k가 남아있다면 뒤에서부터 제거
-    if k > 0:
-        stack = stack[:-k]
+            k-=1
+        stack.append(i)
+        
+    for i in range(k):
+        stack.pop()
+    
     return ''.join(stack)
