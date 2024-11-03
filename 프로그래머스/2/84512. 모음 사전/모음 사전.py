@@ -1,17 +1,18 @@
 def solution(words):
     answer = 0
-    word_list = []
-    word = 'AEIOU'
-    
-    def dfs(c, w):
-        if c == 5:
+            
+    # a -> aa -> aaa -> aaaa -> aaaaa -> aaaae -> aaaai -> aaaao -> aaaau -> aaae
+    # a,e,i,o,u 넣고, 길이가 5랑 같아지면 종료하는 형태
+    result = []
+    def dfs(word):
+        if word:
+            result.append(word)
+        if len(word) == 5:
             return
-        for i in range(len(word)):
-            word_list.append(w+word[i])
-            dfs(c+1, w+word[i])
-            
-            
-    dfs(0,'')
-            
+        
+        for vowel in 'AEIOU':
+            dfs(word+vowel)
     
-    return word_list.index(words)+1
+    dfs('')
+    
+    return result.index(words) + 1
